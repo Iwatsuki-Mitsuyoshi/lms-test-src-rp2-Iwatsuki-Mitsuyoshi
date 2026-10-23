@@ -15,7 +15,7 @@
 	<name>lms</name>
 	<description>LMS 学習管理システム</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>21</java.version><selenium.version>4.37.0</selenium.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -121,7 +121,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.4.0</version>
+			<version>4.37.0</version>
 		</dependency>
 	</dependencies>
 
@@ -143,3 +143,4 @@
 	</build>
 
 </project>
+

@@ -10,6 +10,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,11 +34,21 @@ public class WebDriverUtils {
 		webDriver = new ChromeDriver();
 	}
 	
+	/** ケース01・02用：シークレットモードで新規セッションを開始。 */
+	public static void createIncognitoDriver() {
+		System.setProperty("webdriver.chrome.driver", "lib/chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+        options.setBinary("C:/Program Files/Google/Chrome/Application/chrome.exe");
+		options.addArguments("--incognito", "--window-size=1440,1200");
+		webDriver = new ChromeDriver(options);
+		webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+	}
+
 	/**
 	 * インスタンス終了
 	 */
 	public static void closeDriver() {
-		webDriver.quit();
+		if (webDriver != null) { webDriver.quit(); webDriver = null; }
 	}
 
 	/**
@@ -116,3 +127,5 @@ public class WebDriverUtils {
 	}
 
 }
+
+
