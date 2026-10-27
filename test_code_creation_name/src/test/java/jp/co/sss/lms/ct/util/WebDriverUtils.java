@@ -31,24 +31,18 @@ public class WebDriverUtils {
 	 */
 	public static void createDriver() {
 		System.setProperty("webdriver.chrome.driver", "lib/chromedriver.exe");
-		webDriver = new ChromeDriver();
+
+		// 未ログインの状態で開始するため、シークレットモードを指定する。
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+		webDriver = new ChromeDriver(options);
 	}
 	
-	/** ケース01・02用：シークレットモードで新規セッションを開始。 */
-	public static void createIncognitoDriver() {
-		System.setProperty("webdriver.chrome.driver", "lib/chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-        options.setBinary("C:/Program Files/Google/Chrome/Application/chrome.exe");
-		options.addArguments("--incognito", "--window-size=1440,1200");
-		webDriver = new ChromeDriver(options);
-		webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-	}
-
 	/**
 	 * インスタンス終了
 	 */
 	public static void closeDriver() {
-		if (webDriver != null) { webDriver.quit(); webDriver = null; }
+		webDriver.quit();
 	}
 
 	/**
